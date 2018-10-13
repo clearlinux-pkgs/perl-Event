@@ -4,26 +4,36 @@
 #
 Name     : perl-Event
 Version  : 1.26
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.26.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.26.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libevent-perl/libevent-perl_1.26-1.debian.tar.xz
 Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
-Requires: perl-Event-lib
-Requires: perl-Event-license
-Requires: perl-Event-man
+Requires: perl-Event-lib = %{version}-%{release}
+Requires: perl-Event-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Event - A Generic Perl Event Loop
 This extension aims to provide an simple and optimized event loop for
 a broad class of applications.
 
+%package dev
+Summary: dev components for the perl-Event package.
+Group: Development
+Requires: perl-Event-lib = %{version}-%{release}
+Provides: perl-Event-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Event package.
+
+
 %package lib
 Summary: lib components for the perl-Event package.
 Group: Libraries
-Requires: perl-Event-license
+Requires: perl-Event-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-Event package.
@@ -37,19 +47,11 @@ Group: Default
 license components for the perl-Event package.
 
 
-%package man
-Summary: man components for the perl-Event package.
-Group: Default
-
-%description man
-man components for the perl-Event package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Event-1.26
-mkdir -p %{_topdir}/BUILD/Event-1.26/deblicense/
+cd ..
+%setup -q -T -D -n Event-1.26 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Event-1.26/deblicense/
 
 %build
@@ -74,12 +76,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Event
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Event/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Event
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Event/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -88,32 +90,32 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event.pod
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/EventAPI.h
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/MakeMaker.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/Watcher.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/generic.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/generic.pod
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/group.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/idle.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/io.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/signal.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/timer.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/type.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/typemap
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Event/var.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event.pod
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/EventAPI.h
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/MakeMaker.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/Watcher.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/generic.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/generic.pod
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/group.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/idle.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/io.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/signal.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/timer.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/type.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/typemap
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Event/var.pm
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Event/Event.so
-
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Event/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Event.3
 /usr/share/man/man3/Event::MakeMaker.3
 /usr/share/man/man3/Event::generic.3
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Event/Event.so
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Event/deblicense_copyright
