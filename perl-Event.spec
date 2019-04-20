@@ -4,11 +4,11 @@
 #
 Name     : perl-Event
 Version  : 1.27
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libevent-perl/libevent-perl_1.26-1.debian.tar.xz
-Summary  : unknown
+Summary  : Event loop processing
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
 Requires: perl-Event-lib = %{version}-%{release}
@@ -25,6 +25,7 @@ Summary: dev components for the perl-Event package.
 Group: Development
 Requires: perl-Event-lib = %{version}-%{release}
 Provides: perl-Event-devel = %{version}-%{release}
+Requires: perl-Event = %{version}-%{release}
 
 %description dev
 dev components for the perl-Event package.
@@ -52,7 +53,7 @@ license components for the perl-Event package.
 cd ..
 %setup -q -T -D -n Event-1.27 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Event-1.27/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Event-1.27/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
