@@ -4,15 +4,15 @@
 #
 Name     : perl-Event
 Version  : 1.27
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libevent-perl/libevent-perl_1.26-1.debian.tar.xz
-Summary  : Event loop processing
+Summary  : unknown
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
-Requires: perl-Event-lib = %{version}-%{release}
 Requires: perl-Event-license = %{version}-%{release}
+Requires: perl-Event-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -23,21 +23,11 @@ a broad class of applications.
 %package dev
 Summary: dev components for the perl-Event package.
 Group: Development
-Requires: perl-Event-lib = %{version}-%{release}
 Provides: perl-Event-devel = %{version}-%{release}
 Requires: perl-Event = %{version}-%{release}
 
 %description dev
 dev components for the perl-Event package.
-
-
-%package lib
-Summary: lib components for the perl-Event package.
-Group: Libraries
-Requires: perl-Event-license = %{version}-%{release}
-
-%description lib
-lib components for the perl-Event package.
 
 
 %package license
@@ -48,18 +38,28 @@ Group: Default
 license components for the perl-Event package.
 
 
+%package perl
+Summary: perl components for the perl-Event package.
+Group: Default
+Requires: perl-Event = %{version}-%{release}
+
+%description perl
+perl components for the perl-Event package.
+
+
 %prep
 %setup -q -n Event-1.27
-cd ..
-%setup -q -T -D -n Event-1.27 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libevent-perl_1.26-1.debian.tar.xz
+cd %{_builddir}/Event-1.27
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Event-1.27/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Event-1.27/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -69,7 +69,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -78,7 +78,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Event
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Event/deblicense_copyright
+cp %{_builddir}/Event-1.27/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Event/8f95a1dcbae8ac3fea4de9884269e7a201eba950
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -90,6 +90,19 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %{_fixperms} %{buildroot}/*
 
 %files
+%defattr(-,root,root,-)
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Event.3
+/usr/share/man/man3/Event::MakeMaker.3
+/usr/share/man/man3/Event::generic.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Event/8f95a1dcbae8ac3fea4de9884269e7a201eba950
+
+%files perl
 %defattr(-,root,root,-)
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Event.pm
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Event.pod
@@ -106,17 +119,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Event/type.pm
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Event/typemap
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Event/var.pm
-
-%files dev
-%defattr(-,root,root,-)
-/usr/share/man/man3/Event.3
-/usr/share/man/man3/Event::MakeMaker.3
-/usr/share/man/man3/Event::generic.3
-
-%files lib
-%defattr(-,root,root,-)
 /usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/Event/Event.so
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Event/deblicense_copyright
