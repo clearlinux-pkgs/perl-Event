@@ -4,7 +4,7 @@
 #
 Name     : perl-Event
 Version  : 1.27
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.27.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libevent-perl/libevent-perl_1.26-1.debian.tar.xz
@@ -78,7 +78,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Event
-cp %{_builddir}/Event-1.27/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Event/8f95a1dcbae8ac3fea4de9884269e7a201eba950
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Event/8f95a1dcbae8ac3fea4de9884269e7a201eba950
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,19 +104,19 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event.pod
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/EventAPI.h
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/MakeMaker.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/Watcher.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/generic.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/generic.pod
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/group.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/idle.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/io.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/signal.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/timer.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/type.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/typemap
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Event/var.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Event/Event.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event.pod
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/EventAPI.h
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/MakeMaker.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/Watcher.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/generic.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/generic.pod
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/group.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/idle.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/io.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/signal.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/timer.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/type.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/typemap
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Event/var.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Event/Event.so
