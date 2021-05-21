@@ -104,19 +104,19 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event.pod
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/EventAPI.h
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/MakeMaker.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/Watcher.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/generic.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/generic.pod
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/group.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/idle.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/io.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/signal.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/timer.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/type.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/typemap
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/Event/var.pm
-/usr/lib/perl5/vendor_perl/5.32.1/x86_64-linux-thread-multi/auto/Event/Event.so
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event.pod
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/EventAPI.h
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/MakeMaker.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/Watcher.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/generic.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/generic.pod
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/group.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/idle.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/io.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/signal.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/timer.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/type.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/typemap
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Event/var.pm
+/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/Event/Event.so
