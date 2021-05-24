@@ -4,7 +4,7 @@
 #
 Name     : perl-Event
 Version  : 1.28
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.28.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.28.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libe/libevent-perl/libevent-perl_1.26-1.debian.tar.xz
